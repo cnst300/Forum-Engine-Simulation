@@ -1,0 +1,42 @@
+@startuml
+
+enum TopicKind{
+REGULAR,
+ANNOUNCEMENT,
+NEWS
+}
+
+abstract class Post{
+- id: UUID;
+- created: LocalDateTime;
+- message: String;
+}
+
+class Topic extends Post{
+- title: String;
+- type: TopicKind;
+- comments: List<Comment>
++ getModeratedComment(): List<Comment>;
++ addComment(Comment): void;
+}
+
+class Comment extends Post{
+- topic: Topic;
+- moderated: boolean;
++ toggleModeration(): void;
+}
+
+class Forum <SingleTon>{
+- topics: List<Topic>;
++ getEntireForum(): String;
++ addTopic(Topic): void;
+}
+
+Topic-->TopicKind
+Topic--Comment
+Forum-->Topic
+
+
+
+
+@enduml
