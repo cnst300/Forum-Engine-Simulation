@@ -28,7 +28,7 @@ class Comment extends Post{
 
 class Forum <SingleTon>{
 - topics: List<Topic>;
-+ getEntireForum(): String;
++ getEntireForum(): void;
 + addTopic(Topic): void;
 }
 
